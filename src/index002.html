@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>  
+        <h1>{{age}}</h1>  
+        <h1>{{name}}-----{{age}}</h1>    
+        <h1>{{name123}}-----{{age123}}</h1>  
+        <h1>{{getMsg}}</h1>  
+    </div>
+    
+</body>
+
+<script type="text/javascript">
+
+        let data = {
+            name : "shiyi",
+            age: 12,
+            getMsg: function(){
+                return "Hello world!!"
+            }
+        };
+
+        let app = document.querySelector("#app");
+        console.log(app);
+
+        //https://github.com/vuejs/vue/blob/8f04135dbaa5f5f0500d42c0968beba8043f5363/src/compiler/parser/text-parser.js
+        //vue/src/compiler/parser/text-parser.js
+        var defaultTagRE = /\{\{((?:.|\n)+?)\}\}/g;
+
+        replacrTag002(app);
+
+        function replacrTag002(node){
+             let childNodes = node.childNodes;   
+             childNodes.forEach(element => {
+                  let type = element.nodeType;  
+                  let tagName = element.tagName;
+                  if(type  === 1){
+                      // 元素节点
+                      replacrTag002(element);  
+
+                  }else if (type  === 3){
+                     console.log(type +"  "+ tagName);  
+
+                     // 文本节点
+                     let innerText  = element.nodeValue;
+                     console.log("替换前"+innerText); 
+                     
+                     innerText =  innerText.replace(defaultTagRE, function(_,g){
+                           let key  = g.trim()
+                           if(data[key]){
+                               return data[key];
+                           }
+                           return  ""
+                     });
+                     console.log("替换后"+innerText); 
+
+                     element.nodeValue = innerText
+
+                  }  
+             });   
+        }
+
+
+
+        function replacrTag001(node){
+             let childNodes = node.childNodes;   
+             childNodes.forEach(element => {
+                  let type = element.nodeType;  
+                  let tagName = element.tagName;
+                  if(type  === 1){
+                      // 元素节点
+                      replacrTag001(element);  
+
+                  }else if (type  === 3){
+                     console.log(type +"  "+ tagName);  
+
+                     // 文本节点
+                     let innerText  = element.nodeValue;
+                     if(innerText.indexOf("{{")>-1 && innerText.indexOf("}}")>-1 ){
+                        let tag =  innerText.replace("{{","").replace("}}","");
+                        // console.log(data);    
+                        if(data[tag]){
+                            element.nodeValue =  data[tag]        
+                        }
+                     }   
+                  }  
+             });   
+        }
+
+
+
+</script>
+
+</html>
