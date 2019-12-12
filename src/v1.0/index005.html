@@ -100,6 +100,12 @@
 
         function chanegeData(){
                 data.age  += 1;
+                data.name = JSON.stringify(new Date());
+                updateDom();
+        }
+
+
+        function updateDom(){
                 let temp = templateNode.cloneNode(true);
                 replacrTag003(temp);
                 let root = document.querySelector("#root");

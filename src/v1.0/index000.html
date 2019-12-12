@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body >
+    <div id="app"><h1>name</h1></div>
+</body>
+
+<script type="text/javascript">
+
+        let data = {
+            name : "shiyi",
+            age: 12
+        };
+
+        let app = document.querySelector("#app");
+        
+        console.log(app);
+
+        printElement(app);
+
+        //https://www.w3school.com.cn/jsref/prop_node_nodetype.asp
+        function printElement(node){
+             let childNodes = node.childNodes;   
+             childNodes.forEach(element => {
+                  let type = element.nodeType;  
+                  let tagName = element.tagName;
+                  console.log(type +"  "+ tagName);  
+                  if(type === 3) {
+                    // console.log(element.nodeValue);  
+                  }else{
+                    printElement(element)
+                  }
+             })
+        }
+
+
+        // printElement(document)
+
+
+
+</script>
+
+</html>

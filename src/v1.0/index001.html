@@ -9,9 +9,17 @@
 <body>
     <div id="app">
         <h1>{{name}}</h1>    
-        <h1>{{age}}</h1> 
-        <h1>{{age}} {{name}}</h1> 
-        
+        <h1>{{age}}{{name}}</h1> 
+        <h1>{{age}}{{age}}</h1> 
+
+
+        <div>
+            <div>
+                <div>
+                    <h1>{{name}}</h1>
+                </div>
+            </div>
+        </div>
         <div>
             <p>{{name}}</p>
         </div>
@@ -30,16 +38,16 @@
         
         console.log(app);
 
-       // replacrTag(app);
+        replaceTag(app);
 
-        function replacrTag(node){
+        function replaceTag(node){
              let childNodes = node.childNodes;   
              childNodes.forEach(element => {
                   let type = element.nodeType;  
                   let tagName = element.tagName;
                   if(type  === 1){
                       // 元素节点
-                      replacrTag(element);  
+                      replaceTag(element);  
                   }else if (type  === 3){
                      console.log(type +"  "+ tagName);  
 
