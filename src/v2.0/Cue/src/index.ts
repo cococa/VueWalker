@@ -48,8 +48,7 @@ export function createVNode(dom: Element): VNode{
     root.style = dom.getAttribute("style");
     root.cls = dom.getAttribute('class');
     root.tag = dom.tagName ? dom.tagName :''
-
-
+    
     console.log(root.id);
     console.log(root.style);
     console.log(root.cls);
