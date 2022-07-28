@@ -1,4 +1,11 @@
+export default function getHello() {
+  return 'Hello';
+}
+
+
+
 // https://www.webpackjs.com/guides/getting-started/#%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6
+
 
 // export interface INode {
 //   style: string;
