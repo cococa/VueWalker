@@ -1,39 +1,35 @@
+let activeEffect;
 
-import getHello from './index.ts';
-
-console.log(
-    getHello()
-    );
-
-
-function effect(){
-    document.body.innerHTML = obj.text;
+function effect(fn) {
+  activeEffect = fn;
+  fn();
 }
 
 const bucket = new Set();
 
-const data = { text: "123" }
+const data = { text: "123" };
 
 const obj = new Proxy(data, {
-
-    get: function(target, prop) {
-        bucket.add(effect)
-        return target[prop]    
-    },
-
-    set: function(target, prop, value) {
-        target[prop] = value;
-        bucket.forEach(effect  => effect());
-        return true;
+  get(target, prop) {
+    if (activeEffect) {
+      bucket.add(activeEffect);
     }
-})
+    return target[prop];
+  },
 
+  set(target, prop, value) {
+    target[prop] = value;
+    console.log("Proxy set ", { prop, value });
+    bucket.forEach((fn) => fn());
+    return true;
+  },
+});
 
-effect();
+effect(() => {
+  console.log("do effect");
+  document.body.innerHTML = obj.text;
+});
 
-setTimeout(()=>{
-    obj.text = 'Hello Vue';
-},3000)
-
-
-
+setTimeout(() => {
+  obj.text = "Hello Vue";
+}, 3000);
