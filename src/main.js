@@ -53,6 +53,17 @@ const obj = new Proxy(data, {
   },
 });
 
+function track(){
+
+}
+
+function trigger(){
+  
+}
+
+
+
+
 
 // testcode 1
 effect(() => {
