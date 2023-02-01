@@ -16,12 +16,12 @@ const data = { text: "123" }
 
 const obj = new Proxy(data, {
 
-    get: function(target, prop) {
+    get(target, prop) {
         bucket.add(effect)
         return target[prop]    
     },
 
-    set: function(target, prop, value) {
+    set(target, prop, value) {
         target[prop] = value;
         bucket.forEach(effect  => effect());
         return true;
