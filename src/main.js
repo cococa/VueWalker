@@ -15,7 +15,7 @@ function effect(fn) {
  *
  *  Q:
  *   1. WeakMap 的 key 用的是一个对象，怎么确保唯一性？
- *   2.
+ *   2.  
  *
  */
 const bucket = new WeakMap();
