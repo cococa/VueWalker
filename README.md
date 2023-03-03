@@ -15,6 +15,7 @@ https://www.cnblogs.com/DM428/p/10779338.html
 
 # 深入浅出Vue.js
 https://item.jd.com/12573168.html
+https://www.jianshu.com/u/ee1bc5ffe395
 
 
 https://github.com/snabbdom/snabbdom/blob/master/src/vnode.ts
