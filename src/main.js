@@ -1,9 +1,4 @@
 
-import getHello from './index.ts';
-
-console.log(
-    getHello()
-    );
 
 
 function effect(){
